@@ -12,20 +12,20 @@ class Book {
       this.price=price;
     }
   }
-  // UI Class: Handle UI Tasks
-  class UI {
+  // BookList Class: Handle BookList Tasks
+  class BookList {
     static displayBooks() {
       const books = Store.getBooks();
   
-      books.forEach((book) => UI.addBookToList(book));
+      books.forEach((book) => BookList.addBookToList(book));
     }
   
     static addBookToList(book) {
       const list = document.querySelector('#book-list') as HTMLSelectElement;
   
-      const row = document.createElement('tr');
+      const html = document.createElement('tr');
   
-      row.innerHTML = `
+      html.innerHTML = `
         <td>${book.id}</td> 
         <td>${book.title}</td>
         <td>${book.author}</td>
@@ -34,12 +34,12 @@ class Book {
         <td><a href="#" class="btn delete" style="font-size:20px; text-allign:center; color:red;">&Cross;</a></td>
         ` ;
   
-      list.appendChild(row);
+      list.appendChild(html);
     }
   
-    static deleteBook(el) {
-      if(el.classList.contains('delete')) {
-        el.parentElement.parentElement.remove();
+    static deleteBook(a) {
+      if(a.classList.contains('delete')) {
+        a.parentElement.parentElement.remove();
     }// a . td,          tr 
     }
   
@@ -96,7 +96,7 @@ class Book {
   }
   
   // Event: Display Books
-  document.addEventListener('DOMContentLoaded', UI.displayBooks);
+  document.addEventListener('DOMContentLoaded', BookList.displayBooks);
   
   // Event: Add a Book
   document.querySelector('#book-form').addEventListener('submit', (e) => {
@@ -113,30 +113,30 @@ class Book {
   
     // Validate
     if(title === '' || author === '' || id === '' || ratings==='' || price==='') {
-      UI.showAlert('Please fill in all fields', 'danger');
+      BookList.showAlert('Please fill in all fields', 'danger');
     } else {
       // Instatiate book
       const book = new Book(id,title, author, ratings, price);
   
-      // Add Book to UI
-      UI.addBookToList(book);//website page
+      // Add Book to BookList
+      BookList.addBookToList(book);//website page
   
       // Add book to store
       Store.addBook(book);//local storage
   
       // Show success message
-      UI.showAlert('Book Added', 'success');
+      BookList.showAlert('Book Added', 'success');
   
       // Clear fields
-      UI.clearFields();
+      BookList.clearFields();
     }
   });
   
   // Event: Remove a Book
   document.querySelector('#book-list').addEventListener('click', (e) => {
-    // Remove book from UI
+    // Remove book from BookList
     console.log(e.target)
-    UI.deleteBook(e.target);///website
+    BookList.deleteBook(e.target);///website
   const v=e.target.parentElement.parentElement.children[0].textContent;///localstorage
         //    a.     td            tr -----------id.-----------1             
   console.log(v)//1
@@ -144,5 +144,5 @@ class Book {
     Store.removeBook(v);
   
     // Show success message
-    UI.showAlert('Book Removed', 'success');
+    BookList.showAlert('Book Removed', 'success');
   });

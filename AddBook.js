@@ -8,26 +8,26 @@ var Book = /** @class */ (function () {
     }
     return Book;
 }());
-// UI Class: Handle UI Tasks
-var UI = /** @class */ (function () {
-    function UI() {
+// BookList Class: Handle BookList Tasks
+var BookList = /** @class */ (function () {
+    function BookList() {
     }
-    UI.displayBooks = function () {
+    BookList.displayBooks = function () {
         var books = Store.getBooks();
-        books.forEach(function (book) { return UI.addBookToList(book); });
+        books.forEach(function (book) { return BookList.addBookToList(book); });
     };
-    UI.addBookToList = function (book) {
+    BookList.addBookToList = function (book) {
         var list = document.querySelector('#book-list');
-        var row = document.createElement('tr');
-        row.innerHTML = "\n        <td>" + book.id + "</td> \n        <td>" + book.title + "</td>\n        <td>" + book.author + "</td>\n        <td>" + book.ratings + "</td>\n        <td>" + book.price + "</td>\n        <td><a href=\"#\" class=\"btn delete\" style=\"font-size:20px; text-allign:center; color:red;\">&Cross;</a></td>\n        ";
-        list.appendChild(row);
+        var html = document.createElement('tr');
+        html.innerHTML = "\n        <td>" + book.id + "</td> \n        <td>" + book.title + "</td>\n        <td>" + book.author + "</td>\n        <td>" + book.ratings + "</td>\n        <td>" + book.price + "</td>\n        <td><a href=\"#\" class=\"btn delete\" style=\"font-size:20px; text-allign:center; color:red;\">&Cross;</a></td>\n        ";
+        list.appendChild(html);
     };
-    UI.deleteBook = function (el) {
-        if (el.classList.contains('delete')) {
-            el.parentElement.parentElement.remove();
+    BookList.deleteBook = function (a) {
+        if (a.classList.contains('delete')) {
+            a.parentElement.parentElement.remove();
         } // a . td,          tr 
     };
-    UI.showAlert = function (message, className) {
+    BookList.showAlert = function (message, className) {
         var div = document.createElement('div');
         div.className = "alert alert-" + className;
         div.appendChild(document.createTextNode(message));
@@ -37,14 +37,14 @@ var UI = /** @class */ (function () {
         // Vanish in 3 seconds
         setTimeout(function () { return document.querySelector('.alert').remove(); }, 3000);
     };
-    UI.clearFields = function () {
+    BookList.clearFields = function () {
         document.querySelector('#id1').value = '';
         document.querySelector('#title').value = '';
         document.querySelector('#author').value = '';
         document.querySelector('#ratings').value = '';
         document.querySelector('#price').value = '';
     };
-    return UI;
+    return BookList;
 }());
 // Store Class: Handles Storage
 var Store = /** @class */ (function () {
@@ -77,7 +77,7 @@ var Store = /** @class */ (function () {
     return Store;
 }());
 // Event: Display Books
-document.addEventListener('DOMContentLoaded', UI.displayBooks);
+document.addEventListener('DOMContentLoaded', BookList.displayBooks);
 // Event: Add a Book
 document.querySelector('#book-form').addEventListener('submit', function (e) {
     // Prevent actual submit
@@ -90,30 +90,31 @@ document.querySelector('#book-form').addEventListener('submit', function (e) {
     var price = document.querySelector('#price').value;
     // Validate
     if (title === '' || author === '' || id === '' || ratings === '' || price === '') {
-        UI.showAlert('Please fill in all fields', 'danger');
+        BookList.showAlert('Please fill in all fields', 'danger');
     }
     else {
         // Instatiate book
         var book = new Book(id, title, author, ratings, price);
-        // Add Book to UI
-        UI.addBookToList(book); //website page
+        // Add Book to BookList
+        BookList.addBookToList(book); //website page
         // Add book to store
         Store.addBook(book); //local storage
         // Show success message
-        UI.showAlert('Book Added', 'success');
+        BookList.showAlert('Book Added', 'success');
         // Clear fields
-        UI.clearFields();
+        BookList.clearFields();
     }
 });
 // Event: Remove a Book
 document.querySelector('#book-list').addEventListener('click', function (e) {
-    // Remove book from UI
-    UI.deleteBook(e.target); ///website
+    // Remove book from BookList
+    console.log(e.target);
+    BookList.deleteBook(e.target); ///website
     var v = e.target.parentElement.parentElement.children[0].textContent; ///localstorage
     //    a.     td            tr -----------id.-----------1             
     console.log(v); //1
     // Remove book from store
     Store.removeBook(v);
     // Show success message
-    UI.showAlert('Book Removed', 'success');
+    BookList.showAlert('Book Removed', 'success');
 });
