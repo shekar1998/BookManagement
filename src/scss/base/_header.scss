@@ -1,0 +1,61 @@
+header{
+  background-image: linear-gradient(to right bottom, rgba(0, 0, 0, 0.692), rgba(28, 29, 28, 0.678)), url(taylor-wright-qcJFNNh7AZg-unsplash.jpg);
+  height: 100vh;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+}
+.header-box {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-transform: uppercase;
+  text-align: center; 
+}
+.header-imp
+ {
+  color: rgb(253, 253, 253);
+  backface-visibility: hidden; 
+}
+.header-imp-main 
+{
+  display: block;
+  font-size: 3.2rem;
+  font-weight: 400;
+  letter-spacing: 1.7rem;
+  animation: mainLeftToRight 1s ease-out 1s;
+}
+.header-imp-sub
+ {
+  display: block;
+  font-weight: 700;
+  font-size: 1.8rem;
+  letter-spacing: 1.2rem;
+  margin-bottom: 7rem;
+  animation: mainLeftToLeft 1s ease-out 1s;
+}
+.page-top {
+  float: right;
+  margin-top: 1.1%;
+}
+
+.home {
+  display: inline;
+  font-size: 1.9rem;
+  padding: 2rem 2rem 1.2rem 2rem;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.5s;
+
+ 
+}
+.home:hover {
+  border-bottom: 3px solid rgb(190, 197, 152);
+
+}
+.main-box {
+  position: relative;
+  margin-top: 10rem;
+}

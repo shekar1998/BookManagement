@@ -1,0 +1,67 @@
+
+.index{
+z-index: -1;
+}
+.adding1{
+   margin-top: -60rem ;
+   padding: 20px;
+   width: 60%;
+   margin-left: 20%;
+}
+.emptytable{
+    margin-left: -0%;
+}
+
+.btn-primary {
+    width:17% !important;
+    padding:5px !important;
+}
+.backpage2{
+    margin-left: 10% !important ;
+    margin-bottom: 20px !important;
+    font-size: 12px !important;
+}
+
+.backpage1{
+    /* margin-left: 10% !important ; */
+    font-size: 12px !important;
+}
+.btn-secondary1 {
+    width:30% !important;
+    padding:5px !important;
+}
+
+.newbuttons{
+    margin-left: 25% !important;
+    margin-top: -35px !important;
+    font-size: 12px !important;
+    
+}
+#selection{
+    margin-left: 10% !important;
+    padding: 9px !important;
+    font-size: 10px !important;
+}
+
+#table1,#table12{
+    margin-left: 10%;
+    font-size: 15px;
+}
+
+.button1{
+    padding: 8px !important;
+}
+.button2{
+    padding: 7px !important;
+}
+
+.tablepage,#book-list{
+    font-size: 12px !important;
+}
+#id1,#title,#author,#ratings,#price{
+    font-size: 12px !important;
+}
+
+.onepage{
+    font-size: 14px !important;
+}
